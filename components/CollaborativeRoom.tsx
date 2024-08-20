@@ -3,6 +3,7 @@ import { ClientSideSuspense, RoomProvider } from "@liveblocks/react/suspense";
 import Header from "@/components/Header";
 import { Editor } from "@/components/editor/Editor";
 import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import { ActiveCollaborators } from "./ActiveCollaborators";
 
 export const CollaborativeRoom = ({
   children,
@@ -18,12 +19,15 @@ export const CollaborativeRoom = ({
               <div className="flex w-fit items-center justify-center gap-2">
                 <p className="document-title">document title</p>
               </div>
-              <SignedOut>
-                <SignInButton />
-              </SignedOut>
-              <SignedIn>
-                <SignInButton />
-              </SignedIn>
+              <div className="flex w-full flex-1 justify-end gap-2 sm:gap-3">
+                <ActiveCollaborators />
+                <SignedOut>
+                  <SignInButton />
+                </SignedOut>
+                <SignedIn>
+                  <SignInButton />
+                </SignedIn>
+              </div>
             </Header>
             <Editor />
           </div>

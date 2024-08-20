@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -7,9 +8,9 @@ type HeaderProps = {
     className?: string;
   };
 
-const Header = ({children}: HeaderProps) => {
+const Header = ({children, className}: HeaderProps) => {
   return (
-    <div className='header'>
+    <div className={cn('min-h-[92px] min-w-full flex-nowrap bg-zinc-900 flex w-full items-center justify-between gap-2 px-4', className)}>
         <Link href={"/"} className='md:flex-1'>
             <Image
              src={"/assets/icons/logo.svg"}
