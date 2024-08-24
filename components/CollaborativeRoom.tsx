@@ -5,14 +5,36 @@ import { Editor } from "@/components/editor/Editor";
 import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { ActiveCollaborators } from "./ActiveCollaborators";
 
+type RoomMetadata = {
+  creatorId: string;
+  email: string;
+  title: string;
+};
+type UserType = "creator" | "editor" | "viewer";
+
+type User = {
+  id: string;
+  name: string;
+  email: string;
+  avatar: string;
+  color: string;
+  userType?: UserType;
+};
+
+type CollaborativeRoomProps = {
+  roomId: string;
+  roomMetadata: RoomMetadata;
+  users: User[];
+  currentUserType: UserType;
+};
+
 export const CollaborativeRoom = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+  roomId,
+  roomMetadata,
+}: CollaborativeRoomProps) => {
   return (
     <div>
-      <RoomProvider id="my-room">
+      <RoomProvider id={roomId}>
         <ClientSideSuspense fallback={<div>Loading…</div>}>
           <div className="collaborative-room">
             <Header>
